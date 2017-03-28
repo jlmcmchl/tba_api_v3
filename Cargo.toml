@@ -1,0 +1,8 @@
+[package]
+name = "tba_api_v3"
+version = "0.1.0"
+authors = ["Jordan McMichael <jlmcmchl@gmail.com>"]
+
+[dependencies]
+hyper = "*"
+json = "*"
