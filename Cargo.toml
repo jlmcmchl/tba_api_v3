@@ -5,4 +5,6 @@ authors = ["Jordan McMichael <jlmcmchl@gmail.com>"]
 
 [dependencies]
 hyper = "*"
-json = "*"
+hyper-native-tls = "*"
+serde_json = "*"
+regex = "*"
