@@ -2,6 +2,15 @@
 name = "tba_api_v3"
 version = "1.0.0"
 authors = ["Jordan McMichael <jlmcmchl@gmail.com>"]
+description = "A complete implementation of The Blue Alliance's API v3. See src/main.rs for example usage."
+
+repository = "http://github.com/jlmcmchl/tba_api_v3"
+
+readme = "./README.md"
+
+keywords = ["TBA", "FRC", "Blue", "Alliance"]
+categories = ["api-bindings"]
+
 
 [dependencies]
 hyper = "*"
