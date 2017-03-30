@@ -3,17 +3,17 @@ use ModelType;
 use serde_json::Value;
 use std::collections::HashMap;
 
-pub trait Match {
-    fn match_detail(&mut self, match_key: &str, model_type: Option<ModelType>) -> Value;
+pub trait Events {
+    fn events(&mut self, year: u32, model_type: Option<ModelType>) -> Value;
 }
 
-impl Match for Api {
-    fn match_detail(&mut self, match_key: &str, model_type: Option<ModelType>) -> Value {
-        let endpoint = "/match/<match_key>/<model_type>";
+impl Events for Api {
+    fn events(&mut self, year: u32, model_type: Option<ModelType>) -> Value {
+        let endpoint = "/events/<year>/<model_type>";
 
 
         let mut args = HashMap::new();
-        args.insert(String::from("match_key"), String::from(match_key));
+        args.insert(String::from("year"), year.to_string());
 
         let _ = match model_type {
             Some(mt) => {

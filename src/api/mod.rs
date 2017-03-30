@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::io::Read;
+use std::sync::Arc;
 use hyper::client::Client;
 use hyper::net::HttpsConnector;
 use hyper::Url;
@@ -30,11 +31,14 @@ fn fill_address(fmt: &str, args: HashMap<String, String>) -> Url {
 }
 
 impl Api {
-    pub fn call_endpoint(&self, fmt: &str) -> Value {
-        let url = fill_address(fmt, self.args.clone());
+    pub fn call_endpoint(&self, fmt: &str, args: HashMap<String, String>) -> Value {
+        let url = fill_address(fmt, args);
         println!("{}", url);
 
-        let ret = self.client.get(url).header(XTBAAuthKey(self.auth_key.clone())).send();
+        let ret = self.client
+            .get(url)
+            .header(XTBAAuthKey(self.auth_key.clone()))
+            .send();
         match ret {
             Ok(mut result) => {
                 let mut response = String::new();
@@ -49,11 +53,11 @@ impl Api {
                                 panic!(e)
                             }
                         }
-                    },
-                    Err(e) => panic!(e)
+                    }
+                    Err(e) => panic!(e),
                 }
-            },
-            Err(e) => panic!(e)
+            }
+            Err(e) => panic!(e),
         }
     }
 
@@ -63,8 +67,7 @@ impl Api {
 
         Api {
             auth_key: String::from(auth_key),
-            client: Client::with_connector(connector),
-            args: HashMap::new()
+            client: Arc::new(Client::with_connector(connector)),
         }
     }
 }
