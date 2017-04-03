@@ -11,7 +11,6 @@ fn main() {
 
     let api = Api::new(auth_key);
 
-
     let res = api.clone().status();
     println!("{}", res);
 

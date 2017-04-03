@@ -12,7 +12,7 @@ use hyper::client::Client;
 use std::sync::Arc;
 
 pub mod frc_district;
-pub mod frc_district_list;
+pub mod frc_districts;
 pub mod frc_event;
 pub mod frc_events;
 pub mod frc_match;
@@ -36,21 +36,11 @@ pub enum DetailType {
     Rankings,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Api {
     auth_key: String,
     client: Arc<Client>,
 }
-
-impl Clone for Api {
-    fn clone(&self) -> Api {
-        Api {
-            auth_key: self.auth_key.clone(),
-            client: self.client.clone(),
-        }
-    }
-}
-
 
 #[cfg(test)]
 mod tests {
