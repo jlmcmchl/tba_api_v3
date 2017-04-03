@@ -19,7 +19,7 @@ pub mod frc_match;
 pub mod frc_overall_status;
 pub mod frc_team;
 pub mod frc_teams;
-pub mod api;
+mod api;
 
 header! { (XTBAAuthKey, "X-TBA-Auth-Key") => [String] }
 
